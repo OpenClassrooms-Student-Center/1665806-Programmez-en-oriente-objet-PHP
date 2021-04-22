@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="App\Infra\MatchMaker\Storage\Repository\EncounterRepository" name="App\Domain\MatchMaker\Encounter\Encounter" table="encounter">
+    <id name="playerA" association-key="true" />
+    <id name="playerB" association-key="true" />
+    <field name="status" type="string" column="status" length="255" precision="0" scale="0" nullable="false"/>
+    <field name="scorePlayerA" type="float" column="score_player_a" precision="0" scale="0" nullable="true"/>
+    <field name="scorePlayerB" type="float" column="score_player_b" precision="0" scale="0" nullable="true"/>
+    <field name="dateOfEncounter" type="integer" column="date_of_encounter" precision="0" scale="0" nullable="true"/>
+    <many-to-one field="playerA" target-entity="App\Domain\MatchMaker\Player\Player" fetch="LAZY">
+      <join-columns>
+        <join-column name="player_a_id" referenced-column-name="name"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="playerB" target-entity="App\Domain\MatchMaker\Player\Player" fetch="LAZY">
+      <join-columns>
+        <join-column name="player_b_id" referenced-column-name="name"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,7 @@
+parameters:
+	level: 6
+	paths:
+		- src
+	inferPrivatePropertyTypeFromConstructor: true
+	ignoreErrors:
+		- '#Attribute class JetBrains\\PhpStorm\\ExpectedValues does not exist.#'

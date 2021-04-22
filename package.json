@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@symfony/webpack-encore": "^0.31.0",
+    "alpinejs": "^2.7.3",
+    "autoprefixer": "^9",
+    "postcss": "^7",
+    "postcss-import": "^12.0",
+    "postcss-loader": "^3.0.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "webpack-notifier": "^1.10.1"
+  },
+  "devDependencies": {
+  }
+}

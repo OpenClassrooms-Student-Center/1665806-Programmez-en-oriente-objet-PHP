@@ -1,19 +1,39 @@
 {
     "type": "project",
-    "license": "proprietary",
+    "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Grégoire Hébert",
+            "email": "contact@gheb.dev",
+            "homepage": "https://knot.gheb.dev"
+        }
+    ],
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=8.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-openssl": "*",
+        "ext-pdo": "*",
+        "composer/package-versions-deprecated": "1.11.99.1",
+        "doctrine/doctrine-bundle": "^2.3",
+        "doctrine/doctrine-migrations-bundle": "^3.1",
+        "doctrine/orm": "^2.8",
+        "easycorp/easyadmin-bundle": "^3.2",
+        "sensio/framework-extra-bundle": "^6.1",
         "symfony/console": "5.2.*",
         "symfony/dotenv": "5.2.*",
+        "symfony/expression-language": "5.2.*",
         "symfony/flex": "^1.3.1",
+        "symfony/form": "5.2.*",
         "symfony/framework-bundle": "5.2.*",
+        "symfony/proxy-manager-bridge": "5.2.*",
+        "symfony/security-bundle": "5.2.*",
+        "symfony/uid": "5.2.*",
+        "symfony/validator": "5.2.*",
+        "symfony/webpack-encore-bundle": "^1.11",
         "symfony/yaml": "5.2.*"
-    },
-    "require-dev": {
     },
     "config": {
         "optimize-autoloader": true,
@@ -42,8 +62,13 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
+        "install-only": {
+            "doctrine:database:create": "symfony-cmd",
+            "doctrine:schema:create": "symfony-cmd"
+        },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "@install-only"
         ],
         "post-update-cmd": [
             "@auto-scripts"
@@ -57,5 +82,15 @@
             "allow-contrib": false,
             "require": "5.2.*"
         }
+    },
+    "require-dev": {
+        "ext-pdo_sqlite": "*",
+        "phpstan/phpstan": "^0.12.84",
+        "symfony/debug-bundle": "^5.2",
+        "symfony/monolog-bundle": "^3.0",
+        "symfony/stopwatch": "^5.2",
+        "symfony/twig-bundle": "^5.2",
+        "symfony/var-dumper": "^5.2",
+        "symfony/web-profiler-bundle": "^5.2"
     }
 }

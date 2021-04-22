@@ -1,0 +1,7 @@
+MatchMaker:
+    resource: ../../src/Infra/MatchMaker/UserInterface/Controller/
+    type: annotation
+
+User:
+    resource: ../../src/Infra/User/UserInterface/Controller/
+    type: annotation

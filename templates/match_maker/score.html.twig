@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Saisie des scores{% endblock %}
+
+{% block body %}
+    <main class="mt-5 mx-auto max-w-7xl px-4 sm:mt-6 sm:px-6 md:mt-8 lg:mt-10 lg:px-8 xl:mt-14 z-50">
+        <div class="flex flex-col">
+            <h1 class="text-2xl font-large text-gray-900">Saisie des scores</h1>
+            <h2 class="text-lg font-medium text-gray-500">{{ match.playerA.name }} VS {{ match.playerB.name }}</h2>
+
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 mt-5">
+                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <form name="encounter" class="mt-8 space-y-6" method="POST">
+                            <div class="rounded-md shadow-sm -space-y-px">
+                                <div>
+                                    <input type="number" required value="0" placeholder="score {{ match.playerA.name }}" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" id="encounter_scorePlayerA" name="encounter[scorePlayerA]">
+                                    {{ form_errors(form.scorePlayerA) }}
+                                </div>
+                                <br/>
+                                <div>
+                                    <input type="number" required value="0" placeholder="score {{ match.playerB.name }}"  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" id="encounter_scorePlayerB" name="encounter[scorePlayerB]">
+                                    {{ form_errors(form.scorePlayerB) }}
+                                </div>
+                                <br/>
+                                <div>
+                                    <button type="submit" name="encounter[submit]" id="encounter_submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                                            <!-- Heroicon name: lock-closed -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                                            </svg>
+                                        </span>
+                                        Envoyer le score
+                                    </button>
+                                </div>
+                            </div>
+                            <input type="hidden" id="encounter__token" name="encounter[_token]" value="{{ csrf_token('encounter') }}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+{% endblock %}

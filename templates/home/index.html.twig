@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Match Maker !{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+    <main class="mt-5 px-4 sm:mt-6 sm:px-6 md:mt-8 lg:mt-10 lg:px-8 xl:mt-14 z-50">
+        <div class="flex flex-col">
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <h1 class="text-2xl font-large text-gray-900">
+                        Bonjour {{ app.user.username }}
+                    </h1>
+                    <h2 class="text-lg font-large text-gray-500">Voici votre niveau : {{ app.user.player.ratio|round }}, prêt à progresser ?</h2>
+                </div>
+            </div>
+
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 mt-5">
+                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <h2 id="slide-over-heading" class="text-lg font-medium text-gray-900">
+                        Top 10
+                    </h2>
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead>
+                            <tr>
+                                <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Points
+                                </th>
+                                <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Joueur
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                            {% for player in top10 %}
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">
+                                        {{ player.ratio|round }}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">{{ player.name }}</div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% else %}
+        <main class="mt-5 mx-auto max-w-7xl px-4 sm:mt-6 sm:px-6 md:mt-8 lg:mt-10 lg:px-8 xl:mt-14 z-50">
+            <div classs="sm:text-center lg:text-left">
+                <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                    <span class="block xl:inline">MatchMaker.io</span>
+                    <span class="block text-indigo-600 xl:inline">Online Tournaments</span>
+                </h1>
+                <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                    Retrouvez-vous entre amis, et organisez vos rencontres sports et e-sports ! MatchMaker.io est le compagnon de vos compétitions entre amis.
+                </p>
+                <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                    <div class="rounded-md shadow">
+                        <a href="{{ path('user_new') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                            S'enregistrer
+                        </a>
+                    </div>
+                    <div class="mt-3 sm:mt-0 sm:ml-3">
+                        <a href="{{ path('app_login') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10">
+                            Se connecter
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    {% endif %}
+{% endblock %}

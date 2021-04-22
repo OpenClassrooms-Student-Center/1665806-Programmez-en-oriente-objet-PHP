@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Match{% endblock %}
+
+{% block body %}
+    <main class="mt-5 mx-auto max-w-7xl px-4 sm:mt-6 sm:px-6 md:mt-8 lg:mt-10 lg:px-8 xl:mt-14 z-50">
+        <div class="flex flex-col">
+            <h1 class="text-2xl font-large text-gray-900">Mes Matchs</h1>
+            <h2 class="text-lg font-medium text-gray-500">Joueurs en attente ({{ queue }})</h2>
+
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 mt-5">
+                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <h2 id="slide-over-heading" class="text-lg font-medium text-gray-900">
+                        Matchs en cours
+                    </h2>
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead>
+                            <tr>
+                                <th scope="col" class="text-center px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Player A
+                                </th>
+                                <th scope="col" class="text-center px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Player B
+                                </th>
+                                <th scope="col" class="text-center px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Gagnant
+                                </th>
+                                <th scope="col" class="text-center px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Status
+                                </th>
+                                <th scope="col" class="text-center px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Action
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                            {% for match_playing in matches_playing %}
+                                <tr>
+                                    <td class="text-center px-6 py-4 whitespace-nowrap">{{ match_playing.playerA.name }}</td>
+                                    <td class="text-center px-6 py-4 whitespace-nowrap">{{ match_playing.playerB.name }}</td>
+                                    <td class="text-center px-6 py-4 whitespace-nowrap">{{ match_playing.winner ? match_playing.winner.name : 'N/A' }}</td>
+                                    <td class="text-center px-6 py-4 whitespace-nowrap">{{ match_playing.status }}</td>
+                                    <td class="text-center px-6 py-4 whitespace-nowrap">
+                                        <a href="{{ path('match_maker_edit', {'date': match_playing.dateOfEncounter, 'playerA': match_playing.playerA.name,  'playerB': match_playing.playerB.name}) }}">Saisir les scores</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6">Aucun match en cours...</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 mt-5">
+                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <h2 id="slide-over-heading" class="text-lg font-medium text-gray-900">
+                        Matchs terminé
+                    </h2>
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead>
+                            <tr>
+                                <th scope="col" class="text-center px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Player A
+                                </th>
+                                <th scope="col" class="text-center px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Player B
+                                </th>
+                                <th scope="col" class="text-center px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Gagnant
+                                </th>
+                                <th scope="col" class="text-center px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Status
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                            {% for match_over in matches_over %}
+                                <tr>
+                                    <td class="px-6 py-4 text-center whitespace-nowrap {% if(match_over.winner is same as match_over.playerA) %}font-bold{% endif %}">{{ match_over.playerA.name }}</td>
+                                    <td class="px-6 py-4 text-center whitespace-nowrap {% if(match_over.winner is same as match_over.playerB) %}font-bold{% endif %}">{{ match_over.playerB.name }}</td>
+                                    <td class="px-6 py-4 text-center whitespace-nowrap" >
+                                        {{ match_over.winner ? match_over.scorePlayerA ~ ' : ' ~ match_over.scorePlayerB : 'N/A' }}
+                                    </td>
+                                    <td class="px-6 text-center  py-4 whitespace-nowrap">{{ match_over.status }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6">Aucun match terminé...</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="application/javascript">
+        setTimeout(function()   {
+            window.location.reload();
+        }, 3000);
+    </script>
+{% endblock %}
