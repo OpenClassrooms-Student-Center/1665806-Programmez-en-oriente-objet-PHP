@@ -11,13 +11,8 @@
 
 declare(strict_types=1);
 
-namespace App\MatchMaker;
+namespace App\MatchMaker\Player;
 
-use App\Domain\MatchMaker\Player\PlayerInterface;
-
-interface LobbyInterface
+interface InLobbyPlayerInterface extends PlayerInterface, QueuingInterface
 {
-    public function isPlaying(PlayerInterface $player): bool;
-
-    public function addPlayer(PlayerInterface $player): void;
 }

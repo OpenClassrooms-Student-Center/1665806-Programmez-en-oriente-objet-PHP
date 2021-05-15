@@ -11,13 +11,13 @@
 
 declare(strict_types=1);
 
-namespace App\MatchMaker;
+namespace App\MatchMaker\Player;
 
-use App\Domain\MatchMaker\Player\PlayerInterface;
-
-interface LobbyInterface
+interface PlayerInterface
 {
-    public function isPlaying(PlayerInterface $player): bool;
+    public function updateRatioAgainst(self $player, int $result): void;
 
-    public function addPlayer(PlayerInterface $player): void;
+    public function getName(): string;
+
+    public function getRatio(): ?float;
 }
