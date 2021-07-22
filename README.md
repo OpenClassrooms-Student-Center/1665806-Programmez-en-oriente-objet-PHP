@@ -8,4 +8,3 @@ Votre mission, si vous l’acceptez, est de :
 
 - Créer la classe `Encounter`
 - Remplacer les fonctions fournies dans le code par des méthodes de classe
-- Et si des valeurs peuvent être considérées comme immuables, alors les transformer en constantes :)
