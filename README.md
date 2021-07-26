@@ -32,8 +32,8 @@ echo sprintf(
 ).PHP_EOL;
 
 // Imaginons que greg l'emporte tout de même.
-$encounter->setNewLevel($greg, $jade, Encounter::RESULT_WINNER);
-$encounter->setNewLevel($jade, $greg, Encounter::RESULT_LOSER);
+$encounter->setNewLevel($greg, $jade, RESULT_WINNER);
+$encounter->setNewLevel($jade, $greg, RESULT_LOSER);
 
 echo sprintf(
 	'les niveaux des joueurs ont évolués vers %s pour Greg et %s pour Jade', 
