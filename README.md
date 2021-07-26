@@ -1,6 +1,6 @@
 # 1665806-Programmez-en-oriente-objet-PHP
 
-## TP P1C5
+## TP P1C6
 
 Transformez les méthodes de la classe `Encounter` pour utiliser le mot clé statique et mettez en place des constantes de classe pour les valeurs immuables.
 
