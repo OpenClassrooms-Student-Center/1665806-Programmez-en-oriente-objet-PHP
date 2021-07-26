@@ -1,6 +1,6 @@
 # 1665806-Programmez-en-oriente-objet-PHP
 
-## TP P3C5
+## TP P3C6
 
 Vous trouverez ici, le code rassemblant tout ce que nous avons vu ensemble durant le cours :)
 
