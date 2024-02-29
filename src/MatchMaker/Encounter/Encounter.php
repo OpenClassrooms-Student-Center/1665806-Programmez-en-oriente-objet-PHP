@@ -20,8 +20,8 @@ class Encounter
     public const STATUS_PLAYING = 'En cours';
     public const STATUS_OVER = 'Terminé';
 
-    public int $scorePlayerA;
-    public int $scorePlayerB;
+    private mixed $scorePlayerA = NULL;
+    private mixed $scorePlayerB = NULL;
 
     protected int $dateOfEncounter;
 
