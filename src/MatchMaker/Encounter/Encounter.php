@@ -19,7 +19,8 @@ class Encounter
 {
     public const STATUS_PLAYING = 'En cours';
     public const STATUS_OVER = 'Terminé';
-
+    public int $scorePlayerA;
+    public int $scorePlayerB;
     protected int $dateOfEncounter;
 
     protected string $status = self::STATUS_PLAYING;
