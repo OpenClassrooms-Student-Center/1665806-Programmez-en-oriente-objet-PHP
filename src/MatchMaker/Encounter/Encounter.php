@@ -19,6 +19,7 @@ class Encounter
 {
     public const STATUS_PLAYING = 'En cours';
     public const STATUS_OVER = 'Terminé';
+
     private mixed $scorePlayerA = NULL;
     private mixed $scorePlayerB = NULL;
 
