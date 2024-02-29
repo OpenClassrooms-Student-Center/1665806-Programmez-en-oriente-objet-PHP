@@ -16,6 +16,12 @@ spl_autoload_register(static function ($fqcn): void {
     require_once $path;
 });
 
+function var_dump_preview($var): void {
+    echo '<pre>';
+    var_dump($var);
+    echo '<pre>';
+}
+
 use App\Domain\MatchMaker\Encounter\Score;
 use App\Domain\MatchMaker\Lobby;
 use App\Domain\MatchMaker\Player\Player;
@@ -39,9 +45,9 @@ $encounter->setScores(
     new Score(score: 1, player: $chuckNorris)
 );
 
-var_dump($encounter);
+var_dump_preview($encounter);
 
 $encounter->updateRatios();
 
-var_dump($greg);
-var_dump($chuckNorris);
+var_dump_preview($greg);
+var_dump_preview($chuckNorris);
